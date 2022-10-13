@@ -4,12 +4,17 @@ import com.ms.email.enums.StatusEmail;
 import com.ms.email.models.EmailModel;
 import com.ms.email.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EmailService {
@@ -41,9 +46,17 @@ public class EmailService {
 
         }
 
+
     }
+
+            public Page<EmailModel> findAll (PageRequest sort){
+                return emailRepository.findAll(sort);
+            }
+
+            public Optional<EmailModel>getId(UUID id){
+                return emailRepository.findById(id);
+            }
 
 }
 
 
-//
